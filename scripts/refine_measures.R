@@ -1,25 +1,23 @@
 library(dplyr)
-library(sf)
-library(tigris)
-library(leaflet)
 library(tidyr)
-library(htmltools)
 library(readxl)
 library(readr)
-library(ggplot2)
 
 # Read select measures for 2025 data release
-measures_1 <- read_excel("2025_county_health.xlsx", sheet = "Select Measure Data", skip = 1)
+measures_1 <- read_excel("../data/2025_county_health.xlsx", sheet = "Select Measure Data", skip = 1)
 
 # Read additional measures for 2025 data release
-measures_2 <- read_excel("2025_county_health.xlsx", sheet = "Additional Measure Data", skip = 1)
+measures_2 <- read_excel("../data/2025_county_health.xlsx", sheet = "Additional Measure Data", skip = 1)
 
 # Read in available trends data
-trends <- read_csv("chr_trends_csv_2025.csv")
-
+trends <- read_csv("../data/chr_trends_csv_2025.csv")
+unique(trends$measurename)
+trends %>% filter(
+  measurename == "Unemployment rate"
+)
 # Used for different formatted data releases in different years
 #################################################################
-measures <- c("FIPS", "State", "County", "Deaths", "Years of Potential Life Lost Rate", 
+measures <- c("FIPS", "State", "County", "Years of Potential Life Lost Rate", 
              "% Excessive Drinking", "% Uninsured", "Preventable Hospitalization Rate",
              "Labor Force","% Unemployed", "% Children in Poverty", "% Children in Poverty (Black)", 
              "% Children in Poverty (Hispanic)", "% Children in Poverty (White)",
@@ -32,13 +30,12 @@ matched_vars <- intersect(measures, names(measures_1))
 
 # filter and rename
 #names(measures_1)
-measures_1_new <- measures_1 %>% select(FIPS, State, County, Deaths, `Years of Potential Life Lost Rate`, `% Fair or Poor Health`, `% Uninsured`, `Preventable Hospitalization Rate`,
+measures_1_new <- measures_1 %>% select(FIPS, State, County, `Years of Potential Life Lost Rate`, `% Fair or Poor Health`, `% Uninsured`, `Preventable Hospitalization Rate`,
                                         `Labor Force`,`% Unemployed`, `% Children in Poverty`, `Income Ratio`, `% Severe Housing Problems`) %>%
   rename(
     fips = FIPS,
     state = State,
     county = County,
-    deaths_under_75 = Deaths,
     years_pot_life_lost_rate = `Years of Potential Life Lost Rate`,
     pct_poor_health = `% Fair or Poor Health`,
     pct_uninsured = `% Uninsured`,
@@ -93,7 +90,6 @@ county_df = all_measures_df %>% filter(!is.na(county))
 # aggregate state data to get national averages
 us_df <- state_df %>%
   summarise(
-    deaths_under_75 = sum(deaths_under_75, na.rm = TRUE),
     years_pot_life_lost_rate = mean(years_pot_life_lost_rate, na.rm = TRUE),
     pct_poor_health = mean(pct_poor_health, na.rm = TRUE),
     pct_uninsured = mean(pct_uninsured, na.rm = TRUE),
@@ -129,8 +125,7 @@ full_measures <- bind_rows(all_measures_df, us_df)
 
 # append apostrophe on the fips code so that it does not convert to numeric
 full_measures$fips <- paste0("'", sprintf("%05s", as.character(full_measures$fips)))
-write_csv(full_measures, "data/2025-county-health-filtered.csv")
-
+write_csv(full_measures, "../data/2025-county-health-filtered.csv")
 
 
 
