@@ -24,7 +24,7 @@ An R script to query, clean, and prepare County Health Rankings data.
 -   [Update Schedule](#update-schedule)
 -   [Important Considerations](#important-considerations)
 
-## Scripts: {#scripts}
+## Scripts:
 
 -   `refine_measures.R`: a script to retrieve latest County Health Rankings data at the national, state, and county level and filter to important measures.
 
