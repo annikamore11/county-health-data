@@ -149,7 +149,8 @@ Further descriptions of data fields, years, and sources included for each field 
 
 ## Update Schedule
 
--   County Health Rankings program releases annual data each spring, typically in March
+-   County Health Rankings program releases annual data each spring, typically in March.
+-   Data is delivered via bulk CSV files <https://www.countyhealthrankings.org/health-data/methodology-and-sources/data-documentation>
 -   Data is updated, but each measure may be updated to different years. See documentation.
 
 ## Important Considerations
