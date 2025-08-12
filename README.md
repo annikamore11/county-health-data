@@ -28,25 +28,25 @@ An R script to query, clean, and prepare County Health Rankings data.
 
 -   `refine_measures.R`: a script to retrieve latest County Health Rankings data at the national, state, and county level and filter to important measures.
 
-## Data: {#data}
+## Data:
 
 -   `2025_county_health.xlsx`: Excel file from County Health Rankings with full data set and documentation
 -   `chr_trends_csv_2025.csv`: CSV file from County Health Rankings with updated trends data for select measures
 -   `2025-county-health-filtered.csv`: CSV file from R script that contains cleaned and filtered data and an added geography level (US)
 
-## Geography Levels: {#geography-levels}
+## Geography Levels:
 
 -   National
 -   State
 -   County
 
-## Measures: {#measures}
+## Measures:
 
 Further descriptions of data fields, years, and sources included for each field can be found in `data/2025_county_health.xlsx` under the `Select Measure Sources and Years` sheet as well as the `Additional Measure Sources and Years` sheet.
 
-### Population Health and Well-Being {#population-health-and-well-being}
+### Population Health and Well-Being 
 
-#### Length of Life {#length-of-life}
+#### Length of Life 
 
 | Field                    | Description                                                                          | Year(s)     |
 |--------------------------|--------------------------------------------------------------------------------------|-------------|
@@ -58,7 +58,7 @@ Further descriptions of data fields, years, and sources included for each field 
 
 ------------------------------------------------------------------------
 
-#### Quality of Life {#quality-of-life}
+#### Quality of Life 
 
 | Field            | Description                                                                                                                                  | Year(s) |
 |------------------|----------------------------------------------------------------------------------------------------------------------------------------------|---------|
@@ -67,9 +67,9 @@ Further descriptions of data fields, years, and sources included for each field 
 
 ------------------------------------------------------------------------
 
-### Community Conditions {#community-conditions}
+### Community Conditions 
 
-#### Health Infrastructure {#health-infrastructure}
+#### Health Infrastructure 
 
 | Field                     | Description                                                                                     | Year(s)     |
 |---------------------------|-------------------------------------------------------------------------------------------------|-------------|
@@ -80,7 +80,7 @@ Further descriptions of data fields, years, and sources included for each field 
 
 ------------------------------------------------------------------------
 
-#### Physical Environment {#physical-environment}
+#### Physical Environment 
 
 | Field                    | Description                                                                                                                                                   | Year(s)          |
 |--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
@@ -90,7 +90,7 @@ Further descriptions of data fields, years, and sources included for each field 
 
 ------------------------------------------------------------------------
 
-#### Social and Economic Factors {#social-and-economic-factors}
+#### Social and Economic Factors 
 
 | Field                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                      | Year(s)            |
 |-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
@@ -105,7 +105,7 @@ Further descriptions of data fields, years, and sources included for each field 
 | gender_pay_gap                | Ratio of women's median earnings to men's median earnings for all full-time, year-round workers, presented as "cents on the dollar."                                                                                                                                                                                                                                                                                             | 2019 - 2023        |
 | school_segregation_index      | The extent to which students within different race and ethnicity groups are unevenly distributed across schools when compared with the racial and ethnic composition of the local population. The index ranges from 0 to 1 with lower values representing a school composition that approximates race and ethnicity distributions in the student populations within the county, and higher values representing more segregation. | 2023 - 2024        |
 
-### Demographics {#demographics}
+### Demographics 
 
 | Field     | Description                                                     | Year(s) |
 |-----------|-----------------------------------------------------------------|---------|
@@ -113,7 +113,7 @@ Further descriptions of data fields, years, and sources included for each field 
 
 ------------------------------------------------------------------------
 
-## Trends Measures {#trends-measures}
+## Trends Measures 
 
 | Field                                | Description                                                                                                                                                                                                       |
 |--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -133,26 +133,26 @@ Further descriptions of data fields, years, and sources included for each field 
 | 'Flue vaccinations'                  | Percentage of fee-for-service (FFS) Medicare enrollees who had an annual flu vaccination.                                                                                                                         |
 | 'School funding'                     | The average gap in dollars between actual and required spending per pupil among public school districts. Required spending is an estimate of dollars needed to achieve U.S. average test scores in each district. |
 
-## Installation {#installation}
+## Installation
 
 -   Clone the repository
 -   Run `refine_measurements.R` to add or delete measures or to update data.
 -   Download files from `data/` separately if no updates are needed.
 -   When reading in `2025-county-health-filtered`, make sure to delete the apostrophe in `fips` values (apostrophe was needed to keep `fips` as a character field).
 
-## Required Packages {#required-packages}
+## Required Packages 
 
 -   `dplyr`
 -   `tidyr`
 -   `readxl`
 -   `readr`
 
-## Update Schedule {#update-schedule}
+## Update Schedule
 
 -   County Health Rankings program releases annual data each spring, typically in March
 -   Data is updated, but each measure may be updated to different years. See documentation.
 
-## Important Considerations {#important-considerations}
+## Important Considerations
 
 -   New data releases are not always in the same format and may contain variable names that have changed. When updating the data make sure to reformat and clean data for current release.
 -   `US` geography level was formed by averaging or summing data from all the states. It was not a provided geography from County Health Rankings.
