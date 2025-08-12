@@ -1,4 +1,4 @@
-# Demographic and Health Rating Data From County Health Rankings
+# Population Health Data From County Health Rankings
 
 An R script to query, clean, and prepare County Health Rankings data.
 
@@ -31,8 +31,8 @@ An R script to query, clean, and prepare County Health Rankings data.
 ## Data: {#data}
 
 -   `2025_county_health.xlsx`: Excel file from County Health Rankings with full data set and documentation
--   `2025-county-health-filtered.csv`: CSV file from R script that contains cleaned and filtered data and an added geography level (US)
 -   `chr_trends_csv_2025.csv`: CSV file from County Health Rankings with updated trends data for select measures
+-   `2025-county-health-filtered.csv`: CSV file from R script that contains cleaned and filtered data and an added geography level (US)
 
 ## Geography Levels: {#geography-levels}
 
