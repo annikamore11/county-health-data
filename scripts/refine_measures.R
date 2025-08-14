@@ -2,6 +2,7 @@ library(dplyr)
 library(tidyr)
 library(readxl)
 library(readr)
+library(writexl)
 
 # Read select measures for 2025 data release
 measures_1 <- read_excel("../data/2025_county_health.xlsx", sheet = "Select Measure Data", skip = 1)
@@ -57,7 +58,7 @@ measures_2_new <- measures_2 %>% select(FIPS, State, County, `Life Expectancy`, 
     fips = FIPS,
     state = State,
     county = County,
-    life_exectancy = `Life Expectancy`,
+    life_expectancy = `Life Expectancy`,
     premature_mortality = `Age-Adjusted Death Rate`,
     pct_obese_adults = `% Adults with Obesity`,
     pct_smokers = `% Adults Reporting Currently Smoking`,
@@ -98,7 +99,7 @@ us_df <- state_df %>%
     pct_unemployed = mean(pct_unemployed, na.rm = TRUE),
     income_ratio = mean(income_ratio, na.rm = TRUE),
     pct_sev_housing_problems = mean(pct_sev_housing_problems, na.rm = TRUE),
-    life_exectancy = mean(life_exectancy, na.rm = TRUE),
+    life_expectancy = mean(life_expectancy, na.rm = TRUE),
     premature_mortality = sum(premature_mortality, na.rm = TRUE),
     pct_obese_adults = mean(pct_obese_adults, na.rm = TRUE),
     pct_smokers = mean(pct_smokers, na.rm = TRUE),
@@ -123,10 +124,7 @@ us_df <- state_df %>%
 # Get the full dataset with state, county, and national data
 full_measures <- bind_rows(all_measures_df, us_df)
 
-# append apostrophe on the fips code so that it does not convert to numeric
-full_measures$fips <- paste0("'", sprintf("%05s", as.character(full_measures$fips)))
-write_csv(full_measures, "../data/2025-county-health-filtered.csv")
-
+write_xlsx(full_measures, "../data/2025-county-health-filtered.xlsx")
 
 
 
